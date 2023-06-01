@@ -3,12 +3,13 @@ package at.instacube.bungeealias;
 import at.instacube.bungeealias.command.BaseCommand;
 import at.instacube.bungeealias.config.ConfigLoader;
 import at.instacube.bungeealias.config.model.BaseConfig;
-import net.md_5.bungee.api.ProxyServer;
+import com.google.gson.Gson;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class Main extends Plugin {
@@ -22,9 +23,11 @@ public class Main extends Plugin {
     public void onEnable() {
         Main.PLUGIN = this;
         ConfigLoader configLoader = ConfigLoader.getConfigLoader();
-        configLoader.getBaseConfig();
 
+        String config = new Gson().toJson(configLoader.getBaseConfig());
+        getLogger().log(Level.INFO, config);
 
+        registerCommands();
     }
 
     public void registerCommands() {
