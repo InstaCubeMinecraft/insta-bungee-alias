@@ -1,0 +1,61 @@
+aliases:
+  - targetCommand: test
+    requiresPermission: false
+    permission: none
+    usableOnAllServers: true
+    usableOnServers: # only applys if usableOnAllServers is false
+      - "leben"
+    tabCompletions:
+      - commandStartsWith: test
+        completions:
+          - "hiho"
+          - "%players%"
+
+      - commandStartsWith: test 123
+        completions:
+          - "1234"
+
+    executions:
+      - executeAsConsole: false
+        executeCommand: true
+        showChatMessage: false
+        command: say
+
+      - executeAsConsole: false
+        executeCommand: false
+        showChatMessage: true
+        chatMessage: "&6Golden Cat"
+
+      - executeAsConsole: true
+        executeCommand: true
+        showChatMessage: true
+        command: say
+        chatMessage: "§aSaid by console from %playerName%"
+
+  - targetCommand: ogc
+    requiresPermission: true
+    permission: i.bims.i
+    usableOnAllServers: true
+    usableOnServers: # only applys if usableOnAllServers is false
+      - "leben"
+    tabCompletions:
+      - commandStartsWith: ogc
+        completions:
+          - "%players%"
+      - commandStartsWith: ogc 123
+        completions:
+          - "1234"
+    executions:
+      - executeAsConsole: false
+        executeCommand: true
+        showChatMessage: false
+        command: say
+      - executeAsConsole: false
+        executeCommand: false
+        showChatMessage: true
+        chatMessage: "&6Golden Cat"
+      - executeAsConsole: true
+        executeCommand: true
+        showChatMessage: true
+        command: say
+        chatMessage: "§aSaid by console from %playerName%"
