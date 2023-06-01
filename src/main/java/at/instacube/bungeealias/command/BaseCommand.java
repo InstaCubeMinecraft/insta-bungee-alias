@@ -67,7 +67,12 @@ public class BaseCommand extends Command implements TabExecutor {
                 if (executionConfig.isExecuteAsConsole()) {
                     Main.getPlugin().getProxy().getPluginManager().dispatchCommand(Main.getPlugin().getProxy().getConsole(), excuteCommand);
                 } else {
-                    Main.getPlugin().getProxy().getPluginManager().dispatchCommand(commandSender, excuteCommand);
+                    if (commandSender instanceof ProxiedPlayer) {
+                        ProxiedPlayer player = (ProxiedPlayer) commandSender;
+                        player.chat("/" + excuteCommand);
+                    } else {
+                        Main.getPlugin().getProxy().getPluginManager().dispatchCommand(commandSender, excuteCommand);
+                    }
                 }
             }
 

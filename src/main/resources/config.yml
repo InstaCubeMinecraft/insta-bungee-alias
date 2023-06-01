@@ -26,10 +26,10 @@ aliases:
         showChatMessage: true
         chatMessage: "&6Golden Cat"
 
-      - executeAsConsole: true
+      - executeAsConsole: true # Executes as the bungee console
         executeCommand: true
         showChatMessage: true
-        command: say
+        command: alert
         chatMessage: "§aSaid by console from %playerName%"
 
   - targetCommand: ogc
@@ -57,5 +57,5 @@ aliases:
       - executeAsConsole: true
         executeCommand: true
         showChatMessage: true
-        command: say
+        command: alert
         chatMessage: "§aSaid by console from %playerName%"
