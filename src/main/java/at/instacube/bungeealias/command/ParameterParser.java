@@ -20,6 +20,9 @@ public class ParameterParser {
                     if (text.contains("%localPlayers%")) {
                         List<String> texts = new ArrayList<>();
                         Iterator<String> iter = Arrays.asList(text.split("%localPlayers%")).iterator();
+                        if (!iter.hasNext()) {
+                            texts.addAll(getLocalPlayers(serverName));
+                        }
                         while (iter.hasNext()) {
                             String txt = iter.next();
                             texts.add(txt);
@@ -36,6 +39,9 @@ public class ParameterParser {
                     if (text.contains("%players%")) {
                         List<String> texts = new ArrayList<>();
                         Iterator<String> iter = Arrays.asList(text.split("%players%")).iterator();
+                        if (!iter.hasNext()) {
+                            texts.addAll(getAllPlayers());
+                        }
                         while (iter.hasNext()) {
                             String txt = iter.next();
                             texts.add(txt);
