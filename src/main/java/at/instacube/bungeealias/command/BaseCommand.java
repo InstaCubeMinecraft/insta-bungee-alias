@@ -67,12 +67,7 @@ public class BaseCommand extends Command implements TabExecutor {
                 if (executionConfig.isExecuteAsConsole()) {
                     Main.getPlugin().getProxy().getPluginManager().dispatchCommand(Main.getPlugin().getProxy().getConsole(), excuteCommand);
                 } else {
-                    if (commandSender instanceof ProxiedPlayer) {
-                        ProxiedPlayer player = (ProxiedPlayer) commandSender;
-                        player.chat("/" + excuteCommand);
-                    } else {
-                        Main.getPlugin().getProxy().getPluginManager().dispatchCommand(commandSender, excuteCommand);
-                    }
+                    Main.getPlugin().getProxy().getPluginManager().dispatchCommand(commandSender, excuteCommand);
                 }
             }
 
@@ -100,7 +95,7 @@ public class BaseCommand extends Command implements TabExecutor {
         List<TabCompletionConfig> tabCompletionConfigs = Optional.ofNullable(aliasConfig.getTabCompletions())
                 .orElse(List.of()).stream()
                 .filter(comp -> command.startsWith(comp.getCommandStartsWith().strip()))
-                .sorted(Comparator.comparingInt(a -> a.getCommandStartsWith().length()))
+                .sorted(Comparator.comparingInt((TabCompletionConfig a) -> a.getCommandStartsWith().length()).reversed())
                 .collect(Collectors.toList());
 
         if (tabCompletionConfigs.isEmpty()) {
