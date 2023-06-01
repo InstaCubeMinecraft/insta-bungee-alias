@@ -1,0 +1,5 @@
+name: InstaBungeeAlias
+main: at.instacube.bungeealias.Main
+description: A command overwrite system to block/change commands
+author: roboalex2
+version: ${project.version}
