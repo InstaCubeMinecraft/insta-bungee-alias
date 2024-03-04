@@ -6,6 +6,8 @@ import at.instacube.bungeealias.config.model.BaseConfig;
 import at.instacube.bungeealias.config.model.TabCompletionConfig;
 import com.google.common.io.ByteStreams;
 import net.md_5.bungee.api.plugin.Plugin;
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -30,11 +32,11 @@ public class ConfigLoader {
     }
 
     public BaseConfig reloadBaseConfig() throws FileNotFoundException {
-        Representer representer = new Representer();
+        Representer representer = new Representer(new DumperOptions());
         representer.getPropertyUtils().setSkipMissingProperties(true);
 
         // Define the target object type
-        Constructor constructor = new Constructor(BaseConfig.class);
+        Constructor constructor = new Constructor(BaseConfig.class, new LoaderOptions());
 
         Yaml yaml = new Yaml(constructor, representer);
         File configFile = loadAndCreateResource(Main.getPlugin(), "config.yml");
